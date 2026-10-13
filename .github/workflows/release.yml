@@ -31,5 +31,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/smart-sensor-card.js \
-            --title "$GITHUB_REF_NAME" --generate-notes
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            # release was already published from the GitHub UI: just attach the file
+            gh release upload "$GITHUB_REF_NAME" dist/smart-sensor-card.js --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/smart-sensor-card.js \
+              --title "$GITHUB_REF_NAME" --generate-notes
+          fi
