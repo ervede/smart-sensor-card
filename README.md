@@ -119,3 +119,7 @@ The card is a single file with no build step: `dist/smart-sensor-card.js`. To re
 3. The release workflow checks that tag and `VERSION` agree and publishes a GitHub release.
 
 The `Validate` workflow runs the HACS validation and a JavaScript syntax check on every push.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
